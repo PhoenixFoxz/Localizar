@@ -15,8 +15,7 @@ export default function LocationScreen() {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setErrorMsg("Permissão de localização não concedida");
-        return;
+        throw new Error("Permissão de localização não concedida");
       }
 
       const location = await Location.getCurrentPositionAsync({});
@@ -38,17 +37,13 @@ export default function LocationScreen() {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            ...location.coords,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
         >
           <Marker
-            coordinate={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-            }}
+            coordinate={location.coords}
             title="Minha Localização"
             description="Você está aqui"
           />
@@ -64,11 +59,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 50,
+    paddingHorizontal: 20,
   },
   map: {
     width: "100%",
-    height: "100%",
+    height: 300,
     marginTop: 20,
   },
   errorMsg: {

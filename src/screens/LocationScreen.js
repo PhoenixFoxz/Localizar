@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   map: {
     width: "100%",
-    height: 300,
+    height: "100%",
     marginTop: 20,
   },
   errorMsg: {

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
+import React, { useState, useEffect } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
 
 export default function LocationScreen() {
   const [location, setLocation] = useState(null);
@@ -14,16 +14,16 @@ export default function LocationScreen() {
   const getLocationAsync = async () => {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permissão de localização não concedida');
+      if (status !== "granted") {
+        setErrorMsg("Permissão de localização não concedida");
         return;
       }
 
       const location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     } catch (error) {
-      console.error('Erro ao obter localização:', error);
-      setErrorMsg('Erro ao obter localização');
+      console.error("Erro ao obter localização:", error);
+      setErrorMsg("Erro ao obter localização");
     }
   };
 
@@ -62,17 +62,17 @@ export default function LocationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
   },
   map: {
-    width: '100%',
-    height: 300,
+    width: "100%",
+    height: "100%",
     marginTop: 20,
   },
   errorMsg: {
-    color: 'red',
+    color: "red",
     marginTop: 20,
   },
 });
